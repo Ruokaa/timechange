@@ -3,6 +3,7 @@ package dev.ruoka.time;
 import dev.ruoka.time.config.Configuration;
 import dev.ruoka.time.keybind.Keybinds;
 import dev.ruoka.time.screen.ConfigScreen;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
@@ -33,14 +34,18 @@ public class TimeChanger {
         boolean enabled = !Configuration.isEnabled();
         Configuration.setEnabled(enabled);
         Configuration.save();
-        minecraft.gui.hud.setOverlayMessage(Component.literal("Time Changer: " + (enabled ? "ON" : "OFF")), false);
+        minecraft.gui.hud.setOverlayMessage(Component.literal("Time Changer: ").withStyle(ChatFormatting.GRAY)
+                .append(enabled
+                        ? Component.literal("ON").withStyle(ChatFormatting.GREEN)
+                        : Component.literal("OFF").withStyle(ChatFormatting.RED)), false);
     }
 
     public static void setTime(Minecraft minecraft, int ticks){
         Configuration.setTimeTicks(ticks);
         Configuration.setEnabled(true);
         Configuration.save();
-        minecraft.gui.hud.setOverlayMessage(Component.literal("Time: " + ticks), false);
+        minecraft.gui.hud.setOverlayMessage(Component.literal("Time: ").withStyle(ChatFormatting.GRAY)
+                .append(Component.literal(String.valueOf(ticks)).withStyle(ChatFormatting.GOLD)), false);
     }
 
     public static void scrollTime(Minecraft minecraft, double amount){
