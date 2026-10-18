@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(ClientClockManager.ClientClockInstance.class)
-public class MixinClientClockInstance {
+@Mixin(ClientClockManager.class)
+public class MixinClientClockManager {
 
-    @ModifyReturnValue(method = "totalTicks", at = @At("RETURN"))
+    @ModifyReturnValue(method = "getTotalTicks", at = @At("RETURN"))
     private long time$overrideTime(long original){
         if (!Configuration.isEnabled()){
             return original;
