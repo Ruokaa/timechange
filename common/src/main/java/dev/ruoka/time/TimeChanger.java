@@ -27,14 +27,14 @@ public class TimeChanger {
     }
 
     public static void openConfigScreen(Minecraft minecraft){
-        minecraft.gui.setScreen(new ConfigScreen(minecraft.gui.screen()));
+        minecraft.setScreen(new ConfigScreen(minecraft.screen));
     }
 
     public static void toggleTime(Minecraft minecraft){
         boolean enabled = !Configuration.isEnabled();
         Configuration.setEnabled(enabled);
         Configuration.save();
-        minecraft.gui.hud.setOverlayMessage(Component.literal("Time Changer: ").withStyle(ChatFormatting.GRAY)
+        minecraft.gui.setOverlayMessage(Component.literal("Time Changer: ").withStyle(ChatFormatting.GRAY)
                 .append(enabled
                         ? Component.literal("ON").withStyle(ChatFormatting.GREEN)
                         : Component.literal("OFF").withStyle(ChatFormatting.RED)), false);
@@ -44,7 +44,7 @@ public class TimeChanger {
         Configuration.setTimeTicks(ticks);
         Configuration.setEnabled(true);
         Configuration.save();
-        minecraft.gui.hud.setOverlayMessage(Component.literal("Time: ").withStyle(ChatFormatting.GRAY)
+        minecraft.gui.setOverlayMessage(Component.literal("Time: ").withStyle(ChatFormatting.GRAY)
                 .append(Component.literal(String.valueOf(ticks)).withStyle(ChatFormatting.GOLD)), false);
     }
 
