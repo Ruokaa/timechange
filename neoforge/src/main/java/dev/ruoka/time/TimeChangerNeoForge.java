@@ -21,7 +21,7 @@ public class TimeChangerNeoForge {
     public TimeChangerNeoForge(IEventBus eventBus, ModContainer container) {
         TimeChanger.init(FMLPaths.CONFIGDIR.get());
 
-        container.registerExtensionPoint(IConfigScreenFactory.class, (_, parent) -> new ConfigScreen(parent));
+        container.registerExtensionPoint(IConfigScreenFactory.class, (modContainer, parent) -> new ConfigScreen(parent));
 
         eventBus.addListener(RegisterKeyMappingsEvent.class, event -> {
             event.registerCategory(Keybinds.getKeyCategory());
@@ -30,7 +30,7 @@ public class TimeChangerNeoForge {
             event.register(Keybinds.getConfigKey());
         });
 
-        NeoForge.EVENT_BUS.addListener(ClientTickEvent.Post.class, _ -> {
+        NeoForge.EVENT_BUS.addListener(ClientTickEvent.Post.class, event -> {
             TimeChanger.tick(Minecraft.getInstance());
         });
 

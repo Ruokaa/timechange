@@ -2,10 +2,10 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.ruoka.time.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "client": [
-    "MixinClientClockManager",
+    "MixinLevel",
     "MixinMouseHandler"
   ],
   "server": [],
